@@ -1,0 +1,26 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  background-color: transparent;
+
+  &__logo-container {
+    z-index: 1000;
+    display: flex;
+    margin: 1rem 0 1rem 1rem;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  &__logo-image {
+    height: 4rem;
+    width: 4rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+  }
+}

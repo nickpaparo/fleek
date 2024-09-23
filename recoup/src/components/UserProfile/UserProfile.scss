@@ -1,0 +1,75 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4rem;
+    margin: 1rem;
+    height: 87vh;
+
+    &__details {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+        margin: 2rem 1rem 2rem 1rem;
+    }
+    &__avatar-container {
+        min-width: 8rem;
+        max-width: 8rem;
+        min-height: 8rem;
+        max-height: 8rem;
+        background-color: $primary-green;
+        border-radius: 65px;
+
+    }
+
+    &__avatar-image {
+        object-fit: contain;
+    }
+
+    &__username {
+        display: flex;
+        align-items: center;
+    }
+
+    &__reservations {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 1rem;
+        border: solid 2px black;
+    }
+
+    &__products {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 1rem;
+        border: solid 2px black;
+    }
+
+    &__edit {
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+        padding: 1rem;
+        border: none;
+        background-color: $primary-green;
+        margin: 0 4rem 2rem 4rem;
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+        }
+
+        &:active {
+            background-color: $accent-green;
+            box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+            font-weight: 700;
+        }
+    }
+
+}

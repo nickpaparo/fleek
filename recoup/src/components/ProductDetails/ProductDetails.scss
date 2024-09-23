@@ -1,0 +1,92 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.product {
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 1rem 3rem 1rem;
+  padding-top: 6rem;
+  gap: 1rem;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image-container {
+    width: 100%;
+    height: 45vw;
+    border: 2px solid black;
+  }
+
+  &__image {
+  }
+
+  &__details-container {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+  }
+  &__user-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 4rem;
+    background-color: $primary-green;
+    border-radius: 50px;
+
+    &:hover {
+        cursor: pointer;
+      }
+  }
+
+  &__rating-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__location {
+  }
+
+  &__rating {
+  }
+
+  &__price-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__price-hour {
+    border: none;
+    background-color: $primary-green;
+    padding: 1rem;
+    border-radius: 30px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+    }
+  }
+
+  &__price-day {
+    border: none;
+    background-color: $primary-green;
+    padding: 1rem;
+    border-radius: 30px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+    }
+  }
+
+  &__description-container {
+    width: 100%;
+    border: 2px black solid;
+  }
+
+  &__description-copy {
+  }
+}

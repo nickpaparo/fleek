@@ -1,0 +1,78 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.search {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem 1rem 2rem;
+    height: 90vh;
+    gap: 1rem;
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 4rem;
+        font-size: 2rem;
+        letter-spacing: -0.055rem;
+        color: $primary-black;
+    }
+
+    &__bar {
+        display: flex;
+        position: relative;
+        width: 100%;
+    }
+
+    &__bar-input {
+        display: flex;
+        border: $primary-green 2px solid;
+        border-radius: 20px;
+        padding: 1rem 1rem 1rem 1rem;
+        width: 100%;
+
+        &:focus-within {
+            border: 2px $secondary-green solid;
+        }
+    }
+
+    &__cta {
+        background: url(../../assets/search_icon.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 22.5%;
+        position: absolute;
+        right: 10px;
+        top: 5.5px;
+        background-color: $primary-green;
+        width: 15%;
+        height: 77.5%;
+        border: none;
+        border-radius: 15px;
+        padding: 0.25rem 0.25rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $accent-green;
+            color: white;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        border: 2px black solid;
+        border-radius: 15px;
+        height: 100%;
+        overflow:auto;
+    }
+
+    &__product {
+        height: 10rem;
+        margin: 0 1rem 0 1rem;
+        list-style-type: none;
+        border: $primary-black 2px solid;
+        margin-top: 1rem;
+        border-radius: 10px;
+    }
+}
