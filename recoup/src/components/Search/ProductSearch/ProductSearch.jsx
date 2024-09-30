@@ -5,8 +5,32 @@ import "./ProductSearch.scss";
 const productUrl = "/product";
 const API_URL = import.meta.env.VITE_API_URL;
 
-const ProductSearch = ({ name, id, rating, price, image, product }) => {
-  const [productRating, setRating] = useState([]);
+const ProductSearch = ({ name, id, price, image }) => {
+  const productId = id;
+  console.log("Product ID:", productId);
+  const [rating, setRating] = useState({});
+
+  const fetchProductRating = async () => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}${productUrl}/${productId}/rating`
+      );
+      console.log(data);
+      setRating(data.product_rating);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductRating();
+  }, [productId]);
+
+  console.log(rating);
+
+  if (rating === null) {
+    return <div>No ratings yet</div>;
+  }
 
   return (
     <NavLink to={`/rent/${id}`} className={"productsearch-link"}>
@@ -19,7 +43,9 @@ const ProductSearch = ({ name, id, rating, price, image, product }) => {
         />
         <div className="productsearch__details">
           <div className="productsearch__price">${price}</div>
-          <div className="productsearch__rating">{rating}/5</div>
+          <div className="productsearch__rating">
+            {rating === 0 ? "0 Ratings" : `${rating}`}
+          </div>
         </div>
       </li>
     </NavLink>

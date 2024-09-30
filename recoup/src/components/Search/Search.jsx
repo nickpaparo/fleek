@@ -9,7 +9,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 const Search = () => {
   const [productList, setProductList] = useState([])
   const [searchQuery, setSearchQuery] = useState("");
-  // const [searchResults, setSearchResults] = useState([])
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -57,34 +56,18 @@ const Search = () => {
     } catch (error) {
       console.error("Error fetching search results:", error);
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.error("Error response data:", error.response.data);
         console.error("Error response status:", error.response.status);
         console.error("Error response headers:", error.response.headers);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error("No response received:", error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error("Error message:", error.message);
       }
       setProductList([]);
     }
   };
 
-  // const handleSearch = async (e) => {
-  //   e.preventDefault();
-  //   if (searchQuery === "") return;
-  //   try {
-  //     const response = await axios.get(`${API_URL}${productUrl}/search`, {params: { searchQuery: searchQuery }})
-  //     console.log("Search results", response.data);
-  //     setProductList(Array.isArray(response.data) ? response.data : []);
-  //   } catch (error) {
-  //     console.log("Error fetching search results", error);
-  //     setProductList([]);
-  //   }
-  // }
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -112,7 +95,7 @@ const Search = () => {
       </form>
       <ul className="search__list">
         {productList.map((product) => (
-                <ProductSearch key={product.id} id={product.id} name={product.title} price={product.price_per_hour} rating={product.rating} image={product.image}/>
+                <ProductSearch key={product.id} id={product.id} name={product.title} price={product.price_per_hour} image={product.image}/>
             ))}
       </ul>
     </section>

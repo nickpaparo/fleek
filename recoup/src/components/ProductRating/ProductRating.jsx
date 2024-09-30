@@ -4,7 +4,7 @@ import "./ProductRating.scss"
 const API_URL = import.meta.env.VITE_API_URL;
 
 const ProductRating = ({ productId }) => {
-    const [rating, setRating] = useState(null);
+    const [rating, setRating] = useState({});
 
     const fetchProductRating = async () => {
         try {
@@ -26,8 +26,8 @@ const ProductRating = ({ productId }) => {
     }
 
     return ( 
-        <div>
-            {rating === 0 ? "0 Ratings" : `Renter Rating: ${rating.rating}`}
+        <div className="product__rating">
+            {rating === 0 ? "0 Ratings" : `Renter Rating: ${rating}`}
         </div>
      );
 }

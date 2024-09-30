@@ -11,12 +11,13 @@
   &__header {
     display: flex;
     justify-content: center;
+    font-weight: 600;
+    font-size: 2.5rem;
   }
 
   &__image-container {
     width: 100%;
     height: 45vw;
-    border: 2px solid black;
     border-radius: 20px;
     background-color: $background-green;
     display: flex;
@@ -68,23 +69,33 @@
     justify-content: space-evenly;
     width: 50%;
     gap: 1rem;
+    align-items: center;
     
   }
 
   &__location {
-    border: 2px solid black;
     width: 100%;
     height: 50%;
-    background-color: $background-green;
+    background-color: $primary-green;
     border-radius: 15px;
+    color: $primary-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__rating {
-    width: 100%;
+    width: 70%;
     height: 50%;
-    background-color: $background-green;
-    border: 2px solid black;
+    background-color: $primary-green;
     border-radius: 15px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: $primary-white;
+    padding: 0.5rem;
   }
 
   &__price-container {
@@ -130,7 +141,6 @@
 
   &__description-container {
     width: 100%;
-    border: 2px black solid;
     background-color: $background-green;
     border-radius: 15px;
   }

@@ -79,7 +79,7 @@ const UserProfile = () => {
         `${API_URL}${userUrl}/${userId}/product`
       );
       const activeProductData = data;
-      console.log(activeProductData.image)
+      console.log(activeProductData.image);
       setActiveProduct(activeProductData);
     } catch (error) {
       console.log(error);
@@ -111,6 +111,10 @@ const UserProfile = () => {
         (reservation) => reservation.id !== deletedReservationId
       )
     );
+  };
+
+  const handleNewProductFormNav = () => {
+    navigate("/newproduct");
   };
 
   if (!activeProductData) return null;
@@ -151,10 +155,12 @@ const UserProfile = () => {
           <h2 className="user__active-header">Active Products:</h2>
           <NavLink to="/newproduct" className="user__new-product-link">
             <motion.button
-              className="user__new-product"
-              whileHover={{ scaleX: 1.05, scaleY: 1.05 }}
+              className="user__cta-new-product"
+              whileHover={{ scaleX: 1.05 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              onClick={handleNewProductFormNav}
             >
-              +
+              List New Product
             </motion.button>
           </NavLink>
         </div>

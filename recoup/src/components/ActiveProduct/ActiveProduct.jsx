@@ -2,13 +2,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./ActiveProduct.scss";
+import axios from "axios";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
+const productUrl = "/product";
+const API_URL = import.meta.env.VITE_API_URL;
 
-const ActiveProduct = ({ image, product, rating, id, onEdit }) => {
+const ActiveProduct = ({ image, product, id, onEdit }) => {
+  const productId = id;
+  console.log(productId);
   const [openModal, setOpenModal] = useState();
+  const [rating, setRating] = useState({})
 
   const openDeleteProductModal = () => setOpenModal(true);
   const closeDeleteProductModal = () => setOpenModal(false);
+
+  const fetchProductRating = async () => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}${productUrl}/${productId}/rating`
+      );
+      console.log(data);
+      setRating(data.product_rating);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductRating();
+  }, [productId]);
+
+  console.log(rating);
+
+  if (rating === null) {
+    return <div>No ratings yet</div>;
+  }
 
   return (
     <div className="activeproduct-container">
@@ -19,7 +47,7 @@ const ActiveProduct = ({ image, product, rating, id, onEdit }) => {
             src={image}
             alt={"main image for product"}
           />
-          <div className="activeproduct__rating">{rating}/5</div>
+          <div className="activeproduct__rating">{rating === 0 ? "0 Ratings" : `${rating}`}</div>
         </div>
       </NavLink>
       <div className="activeproduct__cta-container">

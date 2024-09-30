@@ -45,7 +45,7 @@ const ProductDetails = () => {
           user image
         </div>
         <div className="product__rating-container">
-          <p className="product__location">{product.zipcode}</p>
+          <p className="product__location">{product.address}, {product.zipcode}</p>
           <ProductRating productId={productId}/>
         </div>
       </div>
