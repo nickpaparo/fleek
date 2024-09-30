@@ -1,0 +1,100 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.edituser {
+  width: clamp(50%, 767px, 80%);
+  height: 47%;
+
+  padding: 2rem 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+
+  &__copy {
+    font-size: 1rem;
+    background-color: #00000000;
+  }
+
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000000;
+    margin: 1rem;
+  }
+
+  &__name-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #00000000;
+    gap: 1rem;
+  }
+
+  &__firstname-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000000;
+  }
+
+  &__lastname-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000000;
+  }
+
+  &__label {
+    background-color: #00000000;
+    font-size: 0.755rem;
+    padding-left: 0.855rem;
+    letter-spacing: 0.075rem;
+    font-weight: 600;
+  }
+
+  &__input {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 1rem;
+  }
+
+  &__cta-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #00000000;
+    width: 100%;
+  }
+
+  &__button {
+    background-color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-green;
+        color: $primary-white;
+        box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+
+    &:active {
+        background-color: $primary-green;
+        color: $primary-white;
+        box-shadow: inset 0px 7px 16px -4px rgba(28, 28, 28, 1);;
+    }
+  }
+}
+.green-gradient {
+  background: rgb(255, 239, 14);
+  background: linear-gradient(
+    21deg,
+    rgba(255, 239, 14, 1) 0%,
+    rgba(174, 219, 77, 1) 27%,
+    rgba(51, 174, 140, 1) 41%,
+    rgba(255, 239, 14, 1) 80%,
+    rgba(174, 219, 77, 1) 100%
+  );
+}

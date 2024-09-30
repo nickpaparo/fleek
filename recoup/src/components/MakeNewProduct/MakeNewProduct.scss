@@ -1,0 +1,218 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.newproduct {
+  display: flex;
+  flex-direction: column;
+  &__title-container {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: $background-green;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2rem;
+    padding-right: 1rem;
+  }
+
+  &__title-header {
+    background-color: #00000000;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+  }
+
+  &__title-subheader {
+    background-color: #00000000;
+  }
+
+  &__title {
+    width: 75%;
+    height: 2rem;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 50px;
+
+    &::placeholder {
+      color: $primary-black;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+
+  &__description-container {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__description-header {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  &__description-subheader {
+    width: 100%;
+  }
+
+  &__description-input {
+    border: none;
+    background-color: $background-green;
+    padding: 1.5rem;
+    border-radius: 50px;
+    width: 66%;
+    margin-top: 2rem;
+    height: 25%;
+
+    &::placeholder {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      color: $primary-black;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+  }
+  &__price-container {
+    background-color: $background-green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  &__price-header {
+    background-color: #00000000;
+    font-size: 1.5rem;
+  }
+
+  &__price-subheader-container {
+    background-color: #00000000;
+  }
+
+  &__price-subheader {
+    background-color: #00000000;
+  }
+
+  &__price-cta-container {
+    background-color: #00000000;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  &__price-input {
+    border: none;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background-color: $accent-yellow;
+
+    &::placeholder {
+      color: $primary-black;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+    &-header {
+      display: flex;
+      padding-top: 5rem;
+      font-size: 2rem;
+    }
+    &-subcontainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+
+  &__cancel {
+    height: 5rem;
+    width: 5rem;
+    background-color: $primary-white;
+    border: silver 2px solid;
+    color: silver;
+    border-radius: 15px;
+    font-size: 0.95rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  &__submit {
+    border: none;
+    height: 7rem;
+    width: 7rem;
+    background-image: url(../../assets/submit-right-arrow.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.newproduct-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.green-background {
+  background: $background-green;
+  display: flex;
+  flex-direction: column;
+}
+
+.white-background {
+  background: $primary-white;
+  display: flex;
+  flex-direction: column;
+}
+
+.direct {
+//   position: fixed;
+//   bottom: 100px;
+  display: flex;
+  flex-direction: row;
+//   align-items: center;
+  justify-content: center;
+//   margin-left: 2rem;
+  gap: 10%;
+  background-color: #00000000;
+  width: 100%;
+//   height: 4rem;
+  &-down {
+    border: none;
+    background-image: url(../../assets/chevron-down.svg);
+    background-repeat: no-repeat;
+    height: 3rem;
+    width: 3rem;
+    background-size: contain;
+    background-color: #00000000;
+  }
+  &-image {
+    border: none;
+    background-image: url(../../assets/right-chevron.png);
+    background-repeat: no-repeat;
+    height: 5rem;
+    width: 5rem;
+    background-size: contain;
+    background-color: #00000000;
+  }
+}

@@ -1,0 +1,129 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.activerental {
+  height: 4rem;
+  border-bottom: 2px solid $primary-green;
+  margin: 1rem;
+  padding: 0 0 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+
+  &__left-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 50%;
+  }
+
+  &__title {
+    background-color: $background-green;
+    padding: 0.5rem 1rem;
+    color: $primary-black;
+    width: auto;
+    max-width: 70%;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 550;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: clamp(0.885rem, 2vw, 1rem);
+  }
+
+  &__details-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.33rem;
+    width: 50%;
+  }
+
+  &__countdown {
+    background-color: $background-green;
+    color: $primary-black;
+    width: auto;
+    max-width: 75%;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0 1rem 0.5rem 0;
+    border-radius: 25px;
+    font-weight: 700;
+    white-space: wrap;
+    text-overflow: ellipsis;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  &__earning {
+    background-color: $background-green;
+    color: $primary-black;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0 0 0.5rem 0;
+    border-radius: 25px;
+    font-size: 0.775rem;
+    font-weight: 700;
+  }
+  &__edit-cta {
+    background-size: contain;
+    background-image: url(../../assets/down-arrow.png);
+    padding: 0.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 1.45rem;
+    min-height: 1.45rem;
+    max-width: 1.45rem;
+    max-height: 1.45rem;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__edit-details {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 0.5rem;
+  }
+  &__edit {
+    padding: 1rem;
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 30px;
+    background: url(../../assets/edit.png) $primary-green;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: end;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.033);
+      box-shadow: 0px 0px 7px -3px rgba(28, 28, 28, 1);
+      background-color: $secondary-green;
+    }
+  }
+  &__cancel {
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-radius: 30px;
+    background: url(../../assets/trash-bin.png) #cc003a;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: end;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.033);
+      box-shadow: 0px 0px 7px -3px rgba(28, 28, 28, 1);
+    }
+  }
+}

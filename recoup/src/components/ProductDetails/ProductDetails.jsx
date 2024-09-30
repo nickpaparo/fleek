@@ -1,39 +1,64 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSnackbar } from "notistack";
+import axios from "axios";
 import "./ProductDetails.scss";
+import RentProductCta from "../RentProductCta/RentProductCta";
+import ProductRating from "../ProductRating/ProductRating";
+const productUrl = "/product";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ProductDetails = () => {
+  const [product, setProduct] = useState();
+  const { productId } = useParams();
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const fetchProduct = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}${productUrl}/${productId}`);
+      console.log(data);
+      setProduct(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleProfileNav = () => {
+    navigate(`/profile/${user_id}`);
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, [productId]);
+
+  if (!product) return <div>Loading...</div>;
+
   return (
     <section className="product">
-      <h1 className="product__header">product title</h1>
+      <h1 className="product__header">{product.title}</h1>
       <div className="product__image-container">
-        <img className="avatar-image" />
+        <img className="product__image" src={product.image} alt={`User submitted image of ${product.title}`}/>
       </div>
       <div className="product__details-container">
-        <div className="product__user-image">user image</div>
+        <div className="product__user-image" onClick={handleProfileNav}>
+          user image
+        </div>
         <div className="product__rating-container">
-          <p className="product__location">product location</p>
-          <div className="product__rating">rating 1-5</div>
+          <p className="product__location">{product.zipcode}</p>
+          <ProductRating productId={productId}/>
         </div>
       </div>
-      <div className="product__price-container">
-        <motion.button
-          className="product__price-hour"
-          whileHover={{ scaleX: 1.075 }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-        >
-          Price/Hour
-        </motion.button>
-        <motion.button
-          className="product__price-day"
-          whileHover={{ scaleX: 1.075 }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-        >
-          Price/Day
-        </motion.button>
-      </div>
       <div className="product__description-container">
-        <p className="product__description-copy">product description</p>
+        <p className="product__description-copy">{product.description}</p>
       </div>
+      <RentProductCta
+        price_per_day={product.price_per_day}
+        price_per_hour={product.price_per_hour}
+        owner_id={product.user_id}
+        productId={productId}
+        enqueueSnackbar={enqueueSnackbar}
+      />
     </section>
   );
 };

@@ -17,10 +17,13 @@
     display: flex;
     border: none;
     justify-content: center;
-    margin: 1rem 6rem 2rem 6rem;
     background-color: $primary-green;
     padding: 1rem;
     border-radius: 20px;
+    margin: 1rem 6rem 1rem 6rem;
+    color: $primary-white;
+    font-weight: 600;
+    font-size: 1.25rem;
 
     &:hover {
       cursor: pointer;

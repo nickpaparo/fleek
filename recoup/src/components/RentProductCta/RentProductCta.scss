@@ -1,0 +1,128 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.product {
+  &__price-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 0 1.5rem 0 1.5rem;
+  }
+
+  &__cta-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  &__cta-header {
+    width: fit-content;
+    white-space: nowrap;
+    align-content: center;
+  }
+
+  &__subcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  &__price-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__price-add {
+    border: none;
+    background-color: $primary-green;
+    padding: 1rem 1.9rem 1rem 1.9rem;
+    border-radius: 30px;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: $primary-white;
+    font-weight: 600;
+    font-size: 1.33rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+  }
+
+  &__price-count {
+    display: flex;
+    min-width: 35px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: calc(
+      1.33rem - (0.1 * (var(--number-length, 0)))
+    );
+    padding-left: 0.5rem
+  }
+
+  &__price-minus {
+    display: flex;
+    border: none;
+    justify-content: center;
+    background-color: $background-green;
+    padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+    border-radius: 50px;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.33rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+  }
+
+  &__price {
+    &-total-container {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 2rem 0 0;
+    }
+    &-total {
+      display: flex;
+      width: 3rem;
+      height: 3rem;
+      padding: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      background-color: $background-green;
+      font-weight: 600;
+      font-size: 1.33rem;
+      border-radius: 20px;
+    }
+  }
+  &__cta-rent {
+    border: none;
+    background-color: $primary-green;
+    height: 3rem;
+    margin: auto;
+    width: 50%;
+    border-radius: 20px;
+    align-content: center;
+    color: $primary-white;
+    font-weight: 700;
+    font-size: 1.15rem;
+
+    &:hover {
+      background-color: $accent-green;
+      color: $primary-black;
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+  }
+  &__price-cta-container {
+    display: flex;
+  }
+}

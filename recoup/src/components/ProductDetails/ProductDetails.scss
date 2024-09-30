@@ -6,7 +6,7 @@
   flex-direction: column;
   margin: 0rem 1rem 3rem 1rem;
   padding-top: 6rem;
-  gap: 1rem;
+  gap: 2rem;
 
   &__header {
     display: flex;
@@ -17,45 +17,87 @@
     width: 100%;
     height: 45vw;
     border: 2px solid black;
+    border-radius: 20px;
+    background-color: $background-green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 
   &__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    height: auto;
+    width: auto;
   }
 
   &__details-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 5%;
   }
   &__user-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
-    background-color: $primary-green;
+    height: 6rem;
+    width: 6rem;
+    background: rgb(255, 239, 14);
+    background: linear-gradient(
+      225deg,
+      rgba(255, 239, 14, 1) 0%,
+      rgba(174, 219, 77, 1) 11%,
+      rgba(51, 174, 140, 1) 20%,
+      rgba(255, 239, 14, 1) 41%,
+      rgba(51, 174, 140, 0.9570203081232493) 65%,
+      rgba(255, 239, 14, 0.9514180672268907) 90%,
+      rgba(174, 219, 77, 1) 100%
+    );
     border-radius: 50px;
 
     &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
+    }
   }
 
   &__rating-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    width: 50%;
+    gap: 1rem;
+    
   }
 
   &__location {
+    border: 2px solid black;
+    width: 100%;
+    height: 50%;
+    background-color: $background-green;
+    border-radius: 15px;
   }
 
   &__rating {
+    width: 100%;
+    height: 50%;
+    background-color: $background-green;
+    border: 2px solid black;
+    border-radius: 15px;
   }
 
   &__price-container {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__cta-container {
+    display: flex;
+    gap: 15%;
+    align-items: center;
   }
 
   &__price-hour {
@@ -63,10 +105,12 @@
     background-color: $primary-green;
     padding: 1rem;
     border-radius: 30px;
+    color: $primary-white;
+    font-weight: 700;
 
     &:hover {
       cursor: pointer;
-      box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
     }
   }
 
@@ -75,18 +119,25 @@
     background-color: $primary-green;
     padding: 1rem;
     border-radius: 30px;
+    color: $primary-white;
+    font-weight: 700;
 
     &:hover {
       cursor: pointer;
-      box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
     }
   }
 
   &__description-container {
     width: 100%;
     border: 2px black solid;
+    background-color: $background-green;
+    border-radius: 15px;
   }
 
   &__description-copy {
+    background-color: $background-green;
+    padding: 1rem;
+    border-radius: 15px;
   }
 }

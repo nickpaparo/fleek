@@ -1,0 +1,57 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: $background-green;
+  border-radius: 20px;
+
+  &__header {
+    background-color: $background-green;
+    align-items: center;
+  }
+
+  &__cta-container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $background-green;
+  }
+  &__delete {
+    background-color: #cc003a;
+    border: none;
+    color: $primary-white;
+    padding: 1rem;
+    border-radius: 20px;
+    align-items: center;
+    transform: scale(1);
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 12px -3px rgba(28, 28, 28, 1);
+      transform: scale(1.033);
+    }
+  }
+  &__cancel {
+    background-color: $primary-green;
+    border: none;
+    color: $primary-black;
+    padding: 1rem;
+    border-radius: 20px;
+    align-items: center;
+    transform: scale(1);
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 12px -3px rgba(28, 28, 28, 1);
+      transform: scale(1.033);
+    }
+  }
+}

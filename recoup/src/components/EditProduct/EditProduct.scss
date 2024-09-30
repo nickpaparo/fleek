@@ -1,0 +1,133 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+
+.editproduct {
+  width: clamp(50%, 767px, 80%);
+  height: 60%;
+
+  padding: 2rem 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+
+  &__header {
+    background-color: #00000000;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000000;
+    margin: 1rem;
+    gap: 1rem;
+  }
+
+  &__name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #00000000;
+    gap: 1rem;
+  }
+
+  &__copy {
+    font-size: 0.65rem;
+    padding-left: 0.855rem;
+    letter-spacing: 0.075rem;
+    font-weight: 600;
+    color: $primary-black;
+    margin-bottom: 0.25rem;
+    background-color: #00000000;
+  }
+
+  &__firstname-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #00000000;
+  }
+
+  &__lastname-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: #00000000;
+  }
+
+  &__label {
+    background-color: #00000000;
+    font-size: 0.755rem;
+    padding-left: 0.855rem;
+    letter-spacing: 0.075rem;
+    font-weight: 600;
+  }
+
+  &__input {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+
+    &-price {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      border-radius: 20px;
+      border: none;
+      max-width: 5rem;
+    }
+  }
+
+  &__price-container {
+    display: flex;
+    background-color: #00000000;
+    justify-content: space-between;
+  }
+
+  &__price-subcontainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000000;
+  }
+
+  &__cta-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #00000000;
+    width: 100%;
+  }
+
+  &__button {
+    background-color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary-green;
+      color: $primary-white;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+
+    &:active {
+      background-color: $primary-green;
+      color: $primary-white;
+      box-shadow: inset 0px 7px 16px -4px rgba(28, 28, 28, 1);
+    }
+  }
+}
+.yellow-gradient {
+  background: rgb(255, 239, 14);
+  background: linear-gradient(
+    159deg,
+    rgba(255, 239, 14, 1) 0%,
+    rgba(174, 219, 77, 1) 7%,
+    rgba(51, 174, 140, 1) 22%,
+    rgba(255, 239, 14, 0.9514180672268907) 78%,
+    rgba(51, 174, 140, 1) 93%
+  );
+}

@@ -2,74 +2,141 @@
 @use "../../styles/partials/global" as *;
 
 .user {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3rem;
+  margin: 0 1rem 0rem 1rem;
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 6rem 1rem 0 1rem;
+  }
+  &__avatar-container {
+    min-width: 8rem;
+    max-width: 8rem;
+    min-height: 8rem;
+    max-height: 8rem;
+    background: rgb(255, 239, 14);
+    background: linear-gradient(
+      225deg,
+      rgba(255, 239, 14, 1) 0%,
+      rgba(174, 219, 77, 1) 11%,
+      rgba(51, 174, 140, 1) 20%,
+      rgba(255, 239, 14, 1) 41%,
+      rgba(51, 174, 140, 0.9570203081232493) 65%,
+      rgba(255, 239, 14, 0.9514180672268907) 90%,
+      rgba(174, 219, 77, 1) 100%
+    );
+    border-radius: 65px;
+  }
+
+  &__avatar-image {
+    object-fit: contain;
+  }
+
+  &__name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  &__firstname {
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem;
+  }
+
+  &__lastname {
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem;
+  }
+
+  &__reservations-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 4rem;
-    margin: 1rem;
-    height: 87vh;
+    padding: 1rem;
+  }
 
-    &__details {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 3rem;
-        margin: 2rem 1rem 2rem 1rem;
-    }
-    &__avatar-container {
-        min-width: 8rem;
-        max-width: 8rem;
-        min-height: 8rem;
-        max-height: 8rem;
-        background-color: $primary-green;
-        border-radius: 65px;
+  &__reservations-header {
+    margin: 0 0 1rem 1rem;
+  }
 
-    }
+  &__reservations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    &__avatar-image {
-        object-fit: contain;
-    }
+  &__active-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 2.5rem 1.5rem 2.5rem;
+  }
 
-    &__username {
-        display: flex;
-        align-items: center;
-    }
+  &__active-header {
+    display: flex;
+    align-items: center;
+  }
 
-    &__reservations {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 1rem;
-        border: solid 2px black;
-    }
+  &__new-product {
+    background-color: $primary-green;
+    text-decoration: none;
+    color: $primary-white;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    font-size: 2.5rem;
+    align-content: center;
+    border-radius: 30px;
 
-    &__products {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 1rem;
-        border: solid 2px black;
+    &:hover {
+        cursor: pointer;
+        background-color: $secondary-green;
     }
 
-    &__edit {
-        display: flex;
-        justify-content: center;
-        border-radius: 20px;
-        padding: 1rem;
-        border: none;
-        background-color: $primary-green;
-        margin: 0 4rem 2rem 4rem;
+    &-link {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      text-decoration: none;
+    }
+  }
 
-        &:hover {
-            cursor: pointer;
-            box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
-        }
+  &__products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 1rem 0 1rem;
+  }
 
-        &:active {
-            background-color: $accent-green;
-            box-shadow: 0px 7px 16px -4px rgba(28,28,28,1);
-            font-weight: 700;
-        }
+  &__edit {
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 1rem;
+    border: none;
+    background-color: $primary-green;
+    margin: 1rem 6rem 2rem 6rem;
+    color: $primary-white;
+    font-weight: 600;
+    font-size: 1.025rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
     }
 
+    &:active {
+      background-color: $accent-green;
+      box-shadow: 0px 7px 16px -4px rgba(28, 28, 28, 1);
+      font-weight: 700;
+    }
+  }
 }
