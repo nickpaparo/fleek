@@ -95,7 +95,7 @@ const Search = () => {
       </form>
       <ul className="search__list">
         {productList.map((product) => (
-                <ProductSearch key={product.id} id={product.id} name={product.title} price={product.price_per_hour} image={product.image}/>
+                <ProductSearch key={product.id} id={product.id} name={product.title} price={product.price_per_day} image={product.image}/>
             ))}
       </ul>
     </section>

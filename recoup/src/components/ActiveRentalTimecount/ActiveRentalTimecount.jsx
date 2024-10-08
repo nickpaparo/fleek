@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 
 import "./ActiveRentalTimecount.scss";
 
-const ActiveRentalTimecount = ({ rental, id, setActiveReservation }) => {
+const ActiveRentalTimecount = ({
+  rental,
+  id,
+  setActiveReservation,
+  setOwnerRental,
+}) => {
   const [timerDisplay, setTimerDisplay] = useState();
+
   const formatTimeDifference = (difference) => {
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hrs = Math.floor(
@@ -35,7 +41,6 @@ const ActiveRentalTimecount = ({ rental, id, setActiveReservation }) => {
       const timeUntilEnd = end - now;
       return `End: ${formatTimeDifference(timeUntilEnd)}`;
     } else {
-      setActiveReservation(false);
       return "Reservation ended";
     }
   };
@@ -48,14 +53,19 @@ const ActiveRentalTimecount = ({ rental, id, setActiveReservation }) => {
           rental.reservation_end
         );
         setTimerDisplay(timerValue);
+
+        if (timerValue === "Reservation ended") {
+          setOwnerRental(false);
+          setActiveReservation(false);
+        }
       }, 1000);
 
       return () => clearInterval(timerInterval);
     }
-  }, [rental.reservation_start, rental.reservation_end]);
+  }, [rental.reservation_start, rental.reservation_end, setOwnerRental, setActiveReservation]);
   return (
     <div className="activerental__countdown">
-      {reservationTimer(rental.reservation_start, rental.reservation_end)}
+      {timerDisplay}
     </div>
   );
 };

@@ -32,6 +32,7 @@ const ProductSearch = ({ name, id, price, image }) => {
     return <div>No ratings yet</div>;
   }
 
+  console.log(price)
   return (
     <NavLink to={`/rent/${id}`} className={"productsearch-link"}>
       <li className="productsearch">

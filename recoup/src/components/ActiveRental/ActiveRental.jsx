@@ -9,8 +9,7 @@ const reservationUrl = "/reservation";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const ActiveRental = ({ rental, id, updateActiveReservations }) => {
-  console.log(rental.product_title);
-  console.log(rental.id);
+  console.log(rental)
   const { userId } = useParams();
   const [activeReservation, setActiveReservation] = useState([]);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
@@ -21,7 +20,6 @@ const ActiveRental = ({ rental, id, updateActiveReservations }) => {
         `${API_URL}${reservationUrl}/${userId}${productUrl}`
       );
       const { activeReservation } = data;
-      console.log(activeReservation);
       setActiveReservation(activeReservation);
     } catch (error) {
       setActiveReservation([])
@@ -38,6 +36,7 @@ const ActiveRental = ({ rental, id, updateActiveReservations }) => {
 
   return (
     <ul>
+      <div className={`activerental-container ${isDetailsVisible ? 'details-visible' : ''}`}>
       <li className="activerental" id={id}>
         <div className="activerental__left-container">
           <button
@@ -49,10 +48,12 @@ const ActiveRental = ({ rental, id, updateActiveReservations }) => {
         <div className="activerental__details-container">
           <ActiveRentalTimecount
             rental={rental}
+            id={rental.id}
             setActiveReservation={setActiveReservation}
           />
           <div className="activerental__earning">
             $
+            {console.log(rental.total_price)}
             {rental.total_price === null || rental.total_price === 0
               ? " - "
               : `${rental.total_price}`}
@@ -66,6 +67,7 @@ const ActiveRental = ({ rental, id, updateActiveReservations }) => {
           updateActiveReservations={updateActiveReservations}
         />
       )}
+      </div>
     </ul>
   );
 };

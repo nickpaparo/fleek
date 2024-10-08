@@ -48,6 +48,22 @@ const RentProductCta = ({
     return hourlyTotal + dailyTotal;
   };
 
+  const handleHourlyClick = () => {
+    setHourlyClicks((prevClicks) => prevClicks + 1);
+  };
+
+  const handleMinusHourlyClick = () => {
+    setHourlyClicks((prevClicks) => Math.max(prevClicks - 1, 0));
+  };
+
+  const handleDailyClick = () => {
+    setDailyClicks((prevClicks) => prevClicks + 1);
+  };
+
+  const handleMinusDailyClick = () => {
+    setDailyClicks((prevClicks) => Math.max(prevClicks - 1, 0));
+  };
+
   const postReservation = async () => {
     if (hourlyClicks === 0 && dailyClicks === 0) {
       enqueueSnackbar("Please select rental option to continue", {
@@ -92,21 +108,7 @@ const RentProductCta = ({
     }
   };
 
-  const handleHourlyClick = () => {
-    setHourlyClicks((prevClicks) => prevClicks + 1);
-  };
 
-  const handleMinusHourlyClick = () => {
-    setHourlyClicks((prevClicks) => Math.max(prevClicks - 1, 0));
-  };
-
-  const handleDailyClick = () => {
-    setDailyClicks((prevClicks) => prevClicks + 1);
-  };
-
-  const handleMinusDailyClick = () => {
-    setDailyClicks((prevClicks) => Math.max(prevClicks - 1, 0));
-  };
 
   return (
     <div className="product__price-container">

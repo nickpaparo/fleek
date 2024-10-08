@@ -8,13 +8,11 @@ const DeleteReservationModal = ({
   fetchActiveRental,
   updateActiveReservations
 }) => {
-  console.log(rental_id);
 
   const handleDeleteReservation = async () => {
     console.log("Reservation to delete:", rental_id)
     try {
       const response = await axios.delete(`${API_URL}/reservation/${rental_id}`);
-      console.log(response);
       fetchActiveRental();
       updateActiveReservations(rental_id)
       handleClose();

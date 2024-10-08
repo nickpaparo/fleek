@@ -3,13 +3,22 @@
 
 .activerental {
   height: 4rem;
-  border-bottom: 2px solid $primary-green;
-  margin: 1rem;
-  padding: 0 0 1rem 0;
+
+  // margin: 1rem;
+  // padding: 0 0 1rem 0;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
+
+  &-container {
+    border-bottom: 2px solid $primary-green;
+
+    &.details-visible {
+      border-bottom: none;
+    }
+  }
 
   &__left-container {
     display: flex;
@@ -20,7 +29,7 @@
 
   &__title {
     background-color: $background-green;
-    padding: 0.5rem 1rem;
+    padding: 0.35rem 1rem;
     color: $primary-black;
     width: auto;
     max-width: 70%;
@@ -29,7 +38,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 550;
-    white-space: nowrap;
+    white-space: wrap;
     text-overflow: ellipsis;
     font-size: clamp(0.885rem, 2vw, 1rem);
   }
@@ -37,8 +46,9 @@
   &__details-container {
     display: flex;
     flex-direction: row;
-    gap: 0.33rem;
+    gap: 1rem;
     width: 50%;
+    justify-content: space-between;
   }
 
   &__countdown {
@@ -49,7 +59,6 @@
     display: flex;
     align-items: center;
     padding: 0.5rem 1rem 0.5rem 1rem;
-    margin: 0 1rem 0.5rem 0;
     border-radius: 25px;
     font-weight: 700;
     white-space: wrap;
@@ -64,7 +73,6 @@
     display: flex;
     align-items: center;
     padding: 0.5rem 1rem 0.5rem 1rem;
-    margin: 0 0 0.5rem 0;
     border-radius: 25px;
     font-size: 0.775rem;
     font-weight: 700;
@@ -86,13 +94,17 @@
     }
   }
   &__edit-details {
+    border-top: 2px solid $primary-green;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 0.5rem;
+    padding: 1rem;
+    background: $background-green ;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
   &__edit {
     padding: 1rem;
-    width: 3rem;
+    width: 5rem;
     height: 2rem;
     border: none;
     border-radius: 30px;
@@ -110,7 +122,7 @@
     }
   }
   &__cancel {
-    width: 3rem;
+    width: 5rem;
     height: 2rem;
     border: none;
     border-radius: 30px;

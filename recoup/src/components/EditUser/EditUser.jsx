@@ -7,12 +7,13 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const EditUser = ({ handleClose, text, userData }) => {
   const [userDetails, setUserDetails] = useState({
-    username: userData.username,
     email: userData.email,
-    password: "",
+    password: userData.password,
     first_name: userData.first_name,
     last_name: userData.last_name,
   });
+
+  console.log(userData);
 
   const dropIn = {
     hidden: {
@@ -91,13 +92,13 @@ const EditUser = ({ handleClose, text, userData }) => {
               ></input>
             </div>
           </div>
-          <label className="edituser__label">username</label>
+          {/* <label className="edituser__label">username</label>
           <input
             className="edituser__input"
             value={userDetails.username}
             name="username"
             onChange={handleUserEditChange}
-          ></input>
+          ></input> */}
           <label className="edituser__label">email</label>
           <input
             className="edituser__input"
@@ -108,7 +109,7 @@ const EditUser = ({ handleClose, text, userData }) => {
           <label className="edituser__label">password</label>
           <input
             className="edituser__input"
-            placeholder={userDetails.password}
+            value={userDetails.password}
             type="password"
             name="password"
             onChange={handleUserEditChange}

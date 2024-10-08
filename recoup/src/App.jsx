@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
+import { styled } from "@mui/material/styles";
 import NavBar from "./components/NavBar/NavBar";
 import NewProduct from "./components/NewProduct/NewProduct";
 import Header from "./components/Header/Header";
@@ -17,6 +18,21 @@ import { SnackbarProvider } from "notistack";
 
 const userUrl = "/user";
 const API_URL = import.meta.env.VITE_API_URL;
+
+// const StyledSnackbar = styled(Components)(({ theme }) => ({
+//   '&.SnackbarItem-variantSuccess': {
+//     backgroundColor: theme.palette.success.main,
+//   },
+//   '&.SnackbarItem-variantError': {
+//     backgroundColor: theme.palette.error.main,
+//   },
+//   '&.SnackbarItem-variantWarning': {
+//     backgroundColor: theme.palette.warning.main,
+//   },
+//   '&.SnackbarItem-variantInfo': {
+//     backgroundColor: theme.palette.info.main,
+//   },
+// }));
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,71 +56,77 @@ function App() {
   };
 
   return (
-    <SnackbarProvider
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
-      }}
-      dense
-    >
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route
-            path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route path="/home" element={<UserHome />} />
-          <Route
-            path="/signup"
-            element={<SignUp setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route
-            path="/rent"
-            element={
-              <Authorize>
-                <SearchPage />
-              </Authorize>
-            }
-          />
-          <Route
-            path="/rent/:productId"
-            element={
-              <Authorize>
-                <ProductPage />
-              </Authorize>
-            }
-          />
-          <Route
-            path="/earn"
-            element={
-              <Authorize>
-                <NewProduct />
-              </Authorize>
-            }
-          />
-          <Route
-            path="/profile/:userId"
-            element={
-              <Authorize>
-                <UserHome />
-              </Authorize>
-            }
-          />
-          {/* <Route path="/test" element={<EditUser />} /> */}
-          <Route
-            path="/newproduct"
-            element={
-              <Authorize>
-                <NewProductPage />
-              </Authorize>
-            }
-          />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-        <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      </BrowserRouter>
-    </SnackbarProvider>
+      <SnackbarProvider
+      // Components={{
+      //   success: {{ sty }},
+      //   error: StyledSnackbar,
+      //   warning: StyledSnackbar,
+      //   info: StyledSnackbar,
+      // }}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        dense
+      >
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route
+              path="/login"
+              element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            />
+            <Route path="/home" element={<UserHome />} />
+            <Route
+              path="/signup"
+              element={<SignUp setIsLoggedIn={setIsLoggedIn} />}
+            />
+            <Route
+              path="/rent"
+              element={
+                <Authorize>
+                  <SearchPage />
+                </Authorize>
+              }
+            />
+            <Route
+              path="/rent/:productId"
+              element={
+                <Authorize>
+                  <ProductPage />
+                </Authorize>
+              }
+            />
+            <Route
+              path="/earn"
+              element={
+                <Authorize>
+                  <NewProduct />
+                </Authorize>
+              }
+            />
+            <Route
+              path="/profile/:userId"
+              element={
+                <Authorize>
+                  <UserHome />
+                </Authorize>
+              }
+            />
+            {/* <Route path="/test" element={<EditUser />} /> */}
+            <Route
+              path="/newproduct"
+              element={
+                <Authorize>
+                  <NewProductPage />
+                </Authorize>
+              }
+            />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+          <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        </BrowserRouter>
+      </SnackbarProvider>
   );
 }
 

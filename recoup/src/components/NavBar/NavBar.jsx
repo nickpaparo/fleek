@@ -14,16 +14,16 @@ const NavBar = ({ setIsLoggedIn, isLoggedIn }) => {
       navigate("/login");
     }
   };
-  const handleEarnClick = () => {
-    if (isLoggedIn) {
-      navigate("/earn");
-    } else {
-      navigate("/login");
-    }
-  };
+  // const handleEarnClick = () => {
+  //   if (isLoggedIn) {
+  //     navigate("/earn");
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
   const handleRentClick = () => {
     if (isLoggedIn) {
-      navigate("rent");
+      navigate("/rent");
     } else {
       navigate("/login");
     }
@@ -39,14 +39,14 @@ const NavBar = ({ setIsLoggedIn, isLoggedIn }) => {
       >
         <p className="navbar__copy">Rent</p>
       </motion.div>
-      {/* <motion.div
+      <motion.div
         className="navbar__container navbar__earn"
         whileHover={{ scaleX: 1.033 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
-        onClick={handleEarnClick}
+        // onClick={handleEarnClick}
       >
         <p className="navbar__copy">Earn</p>
-      </motion.div> */}
+      </motion.div>
       <motion.div
         className="navbar__container navbar__profile"
         whileHover={{ scaleX: 1.033 }}

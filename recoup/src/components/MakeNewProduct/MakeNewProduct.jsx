@@ -1,9 +1,11 @@
 import axios from "axios";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./MakeNewProduct.scss";
+import { image } from "framer-motion/client";
+import { createPortal } from "react-dom";
 const productUrl = "/product";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -17,6 +19,10 @@ const MakeNewProduct = () => {
     price_per_day: "",
     price_per_hour: "",
     is_available: true,
+    image: "",
+    address: "",
+    zipcode: "",
+    imageUrl: "",
   });
 
   const navigate = useNavigate();
@@ -28,6 +34,9 @@ const MakeNewProduct = () => {
   const descriptionRef = useRef(null);
   const priceDayRef = useRef(null);
   const priceHourRef = useRef(null);
+  const imageRef = useRef(null);
+  const addressRef = useRef(null);
+  const zipcodeRef = useRef(null);
 
   const handleCancelNewProduct = () => {
     navigate("/earn");
@@ -40,11 +49,8 @@ const MakeNewProduct = () => {
 
   const postProduct = async (newProduct) => {
     try {
-      console.log(formData)
-      const response = await axios.post(
-        `${API_URL}${productUrl}`,
-        formData
-      );
+      console.log(formData);
+      const response = await axios.post(`${API_URL}${productUrl}`, formData);
       console.log(`Successfully posted new product`, response.data);
       return response.data;
     } catch (error) {
@@ -61,12 +67,22 @@ const MakeNewProduct = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: name.includes("price") ? value.replace(/[^0-9.]/g, "") : value,
+      imageUrl: name === "image" ? value : prevData.imageUrl,
     }));
   };
 
   const handleAddNewProduct = async () => {
     try {
-      console.log(formData)
+      if (
+        !formData.user_id ||
+        !formData.title ||
+        !formData.price_per_hour ||
+        !formData.price_per_day
+      ) {
+        alert("Please fill out all required fields");
+        return;
+      }
+      console.log(formData);
       await postProduct(formData);
       const userId = localStorage.getItem("user_id");
       navigate(`/profile/${userId}`);
@@ -77,11 +93,11 @@ const MakeNewProduct = () => {
 
   const moveNextStep = async (e) => {
     e.preventDefault();
-    if (currentStep < 3) {
+    if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
     } else {
       try {
-        console.log(formData)
+        console.log(formData);
         await handleAddNewProduct();
         const userId = localStorage.getItem("user_id");
         navigate(`/profile/${userId}`);
@@ -166,7 +182,7 @@ const MakeNewProduct = () => {
                   Pro Tip: <br /> People love to hear your favorite way to use
                   it.
                 </p>
-                <input
+                <textarea
                   ref={descriptionRef}
                   id="description"
                   name="description"
@@ -175,7 +191,7 @@ const MakeNewProduct = () => {
                   onChange={handleInputChange}
                   className="newproduct__description-input"
                   placeholder="write a quick description here"
-                ></input>
+                ></textarea>
               </div>
               <div className="direct">
                 <motion.div
@@ -184,7 +200,7 @@ const MakeNewProduct = () => {
                   whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
                   whileTap={{ scaleX: 1, scaleY: 1 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  onClick={moveNextStep}
+                  onClick={(e) => moveNextStep(e)}
                 ></motion.div>
               </div>
             </motion.div>
@@ -242,7 +258,7 @@ const MakeNewProduct = () => {
                     whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
                     whileTap={{ scaleX: 1, scaleY: 1 }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
-                    onClick={moveNextStep}
+                    onClick={(e) => moveNextStep(e)}
                   ></motion.button>
                 </div>
               </div>
@@ -257,21 +273,137 @@ const MakeNewProduct = () => {
               transition={{ duration: 0.3 }}
               className="newproduct-container white-background"
             >
+              <div className="newproduct__image-container">
+                <h3 className="newproduct__image-header">
+                  Show off your stuff!
+                </h3>
+                <div className="newproduct__image-subheader-container">
+                  <p className="newproduct__image-subheader">Pro Tip:</p>
+                  <p className="newproduct__image-subheader">
+                    Upload clear images, with the product well lit
+                  </p>
+                </div>
+                <div className="newproduct__image-input-container">
+                  <label className="newproduct__image-label">
+                    Insert image URL below:
+                  </label>
+                  <input
+                    className="newproduct__image-input"
+                    type="url"
+                    id="url-input"
+                    name="image"
+                    accept="image/*"
+                    placeholder="Enter image URL"
+                    ref={imageRef}
+                    value={formData.imageUrl}
+                    onChange={handleInputChange}
+                  />
+                  {formData.imageUrl && (
+                    <img
+                      className="newproduct__image-preview"
+                      id="url-preview"
+                      src={formData.imageUrl}
+                      alt="Image preview"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                        console.error("Error loading image");
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="direct">
+                  <motion.button
+                    className="direct-image"
+                    alt={"double chevron up"}
+                    whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
+                    whileTap={{ scaleX: 1, scaleY: 1 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    onClick={(e) => moveNextStep(e)}
+                  ></motion.button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+          {currentStep === 4 && (
+            <motion.div
+              key="step5"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.3 }}
+              className="newproduct-container green-background"
+            >
+              <div className="newproduct__address-header-container">
+                <h2 className="newproduct__address-header">
+                  Product's location
+                </h2>
+                <p className="newproduct__address-subheader">
+                  Will be shown only after reservation is confirmed
+                </p>
+              </div>
+              <div className="newproduct__address-input-container">
+                <label className="newproduct__address-label">Address</label>
+                <input
+                  ref={addressRef}
+                  onChange={handleInputChange}
+                  id="address"
+                  name="address"
+                  type="text"
+                  className="newproduct__address-input"
+                  placeholder="333 Smith Rd"
+                />
+                <label className="newproduct__address-label">Zipcode</label>
+                <input
+                  ref={zipcodeRef}
+                  onChange={handleInputChange}
+                  type="number"
+                  min="0"
+                  step="1"
+                  id="zipcode"
+                  name="zipcode"
+                  className="newproduct__address-input"
+                  placeholder="10011"
+                />
+              </div>
+              <div className="direct">
+                <motion.button
+                  className="direct-image"
+                  alt={"double chevron up"}
+                  whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
+                  whileTap={{ scaleX: 1, scaleY: 1 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  onClick={moveNextStep}
+                ></motion.button>
+              </div>
+            </motion.div>
+          )}
+          {currentStep === 5 && (
+            <motion.div
+              key="step6"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.3 }}
+              className="newproduct-container white-background"
+            >
               <div className="newproduct__cta">
                 <h3 className="newproduct__cta-header">Go Live!</h3>
                 <div className="newproduct__cta-subcontainer">
-                  <button
+                  <motion.button
+                    whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
+                    whileTap={{ scaleX: 1, scaleY: 1 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                     className="newproduct__cancel"
                     onClick={handleCancelNewProduct}
                   >
                     Cancel
-                  </button>
+                  </motion.button>
                   {console.log(formData)}
                   <NavLink to="/earn">
                     <motion.button
                       className="newproduct__submit"
                       type="submit"
-                      onClick={moveNextStep}
+                      onClick={(e) => moveNextStep(e)}
                       disabled={currentStep < 3}
                       whileHover={{ scaleX: 1.1, scaleY: 1.05 }}
                       whileTap={{ scaleX: 1, scaleY: 1 }}

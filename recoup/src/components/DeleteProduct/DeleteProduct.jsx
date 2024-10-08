@@ -2,7 +2,7 @@ import axios from "axios";
 import Modal from "../Modal/Modal";
 const API_URL = import.meta.env.VITE_API_URL;
 
-const DeleteProduct = ({ handleClose, productData, onDeleteSuccess, handleOpen }) => {
+const DeleteProduct = ({ handleClose, productData, updateActiveProducts }) => {
   const product_id = productData.id;
   console.log("Delete Modal ID:", product_id);
 
@@ -11,8 +11,7 @@ const DeleteProduct = ({ handleClose, productData, onDeleteSuccess, handleOpen }
       const response = await axios.post(`${API_URL}/product/delete`, {
         id: product_id,
       });
-      console.log(response);
-      onDeleteSuccess();
+      updateActiveProducts(product_id)
       handleClose();
     } catch (error) {
       console.log("Error deleting producting", error);

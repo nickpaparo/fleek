@@ -7,9 +7,10 @@ import DeleteProduct from "../DeleteProduct/DeleteProduct";
 const productUrl = "/product";
 const API_URL = import.meta.env.VITE_API_URL;
 
-const ActiveProduct = ({ image, product, id, onEdit }) => {
+const ActiveProduct = ({ image, product, id, onEdit, updateActiveProducts }) => {
   const productId = id;
   console.log(productId);
+  console.log(product);
   const [openModal, setOpenModal] = useState();
   const [rating, setRating] = useState({})
 
@@ -19,20 +20,19 @@ const ActiveProduct = ({ image, product, id, onEdit }) => {
   const fetchProductRating = async () => {
     try {
       const { data } = await axios.get(
-        `${API_URL}${productUrl}/${productId}/rating`
+        `${API_URL}${productUrl}/${product.id}/rating`
       );
-      console.log(data);
+      console.log(data)
       setRating(data.product_rating);
     } catch (error) {
       console.log(error);
+      setRating(null);
     }
   };
 
   useEffect(() => {
     fetchProductRating();
   }, [productId]);
-
-  console.log(rating);
 
   if (rating === null) {
     return <div>No ratings yet</div>;
@@ -74,6 +74,7 @@ const ActiveProduct = ({ image, product, id, onEdit }) => {
             openModal={openModal}
             handleClose={closeDeleteProductModal}
             productData={product}
+            updateActiveProducts={updateActiveProducts}
           />
         )}
       </AnimatePresence>

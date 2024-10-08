@@ -3,9 +3,10 @@ import "./Header.scss";
 import logo from "../../assets/bolt_icon.svg"
 
 const Header = () => {
+    const userId = localStorage.getItem("user_id")
     const navigate = useNavigate();
     const handleLogoNav = () => {
-        navigate("/")
+        navigate(`/profile/${userId}`)
     }
 
     return ( 

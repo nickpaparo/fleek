@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import EditUser from "../EditUser/EditUser";
@@ -7,54 +7,30 @@ import "./UserProfile.scss";
 import ActiveProduct from "../ActiveProduct/ActiveProduct";
 import ActiveRental from "../ActiveRental/ActiveRental";
 import EditProduct from "../EditProduct/EditProduct";
-import DeleteProduct from "../DeleteProduct/DeleteProduct";
 const userUrl = "/user";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const { userId } = useParams();
   const [activeRentalData, setActiveRentalData] = useState([]);
   const [activeProductData, setActiveProduct] = useState([]);
   const [userData, setUserData] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [editProductModalOpen, setEditProductModalOpen] = useState(false);
-  const [deleteProductModalOpen, setDeleteProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState([]);
 
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
-
-  const openEditResModal = (rental) => {
-    setActiveRentalData(rental);
-    setEditResModalOpen(true);
-  };
 
   const closeEditProductModal = () => {
     setEditProductModalOpen(false);
     setSelectedProduct(null);
   };
 
-  const openDeleteProductModal = (product) => {
-    setSelectedProduct(product);
-    setDeleteProductModalOpen(true);
-  };
-
   const openEditProductModal = (product) => {
     setSelectedProduct(product);
     setEditProductModalOpen(true);
-  };
-
-  const closeDeleteProductModal = () => {
-    setDeleteProductModalOpen(false);
-    setSelectedProduct(null);
-  };
-
-  const handleProductDeleted = () => {
-    fetchActiveProduct();
-  };
-
-  const handleReservationDeleted = () => {
-    fetchActiveRental();
   };
 
   const fetchUserProfile = async () => {
@@ -79,7 +55,6 @@ const UserProfile = () => {
         `${API_URL}${userUrl}/${userId}/product`
       );
       const activeProductData = data;
-      console.log(activeProductData.image);
       setActiveProduct(activeProductData);
     } catch (error) {
       console.log(error);
@@ -110,6 +85,12 @@ const UserProfile = () => {
       prevReservations.filter(
         (reservation) => reservation.id !== deletedReservationId
       )
+    );
+  };
+
+  const updateActiveProducts = (deletedProductId) => {
+    setActiveProduct((prevProducts) =>
+      prevProducts.filter((product) => product.id !== deletedProductId)
     );
   };
 
@@ -176,6 +157,7 @@ const UserProfile = () => {
                 e.stopPropagation();
                 openEditProductModal(product);
               }}
+              updateActiveProducts={updateActiveProducts}
             />
           ))}
         </div>

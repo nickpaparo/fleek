@@ -11,6 +11,8 @@ const EditProduct = ({ modalOpen, handleClose, productData }) => {
     description: "",
     price_per_hour: "",
     price_per_day: "",
+    address: "",
+    zipcode: "",
   });
 
   useEffect(() => {
@@ -65,6 +67,10 @@ const EditProduct = ({ modalOpen, handleClose, productData }) => {
       opacity: 0,
     },
   };
+
+  useEffect(() => {
+    handleSubmit(productDetails.id)
+  })
 
   return (
     <Backdrop onClick={handleClose}>
@@ -128,21 +134,26 @@ const EditProduct = ({ modalOpen, handleClose, productData }) => {
               ></input>
             </div>
           </div>
-          {/* <label className="editproduct__label">Address</label>
-          <input
-            className="editproduct__input"
-            // placeholder={address}
-            type="text"
-            onChange={handleProductEditChange}
-          ></input>
-          <label className="editproduct__label">Zipcode</label>
-          <input
-            className="editproduct__input"
-            // placeholder={zipcode}
-            type="numbers"
-            onChange={handleProductEditChange}
-          ></input> */}
-
+          {/* <div>
+            <label className="editproduct__label">Address</label>
+            <input
+              className="editproduct__input"
+              // placeholder={productaddress}
+              type="text"
+              onChange={handleProductEditChange}
+              value={productDetails.address}
+            ></input>
+          </div>
+          <div>
+            <label className="editproduct__label">Zipcode</label>
+            <input
+              className="editproduct__input"
+              // placeholder={zipcode}
+              value={productDetails.zipcode}
+              type="numbers"
+              onChange={handleProductEditChange}
+            ></input>
+          </div> */}
           <div className="editproduct__cta-container">
             <motion.button
               className="editproduct__button"
